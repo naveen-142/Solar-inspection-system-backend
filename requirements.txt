@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-multipart
+onnxruntime
+opencv-python-headless
+numpy
+pillow
+python-dotenv
+email-validator
+requests
