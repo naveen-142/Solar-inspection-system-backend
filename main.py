@@ -17,6 +17,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+BASE_URL = "https://solar-inspection-system-backend-2.onrender.com"
 app = FastAPI()
 
 # CORS configuration
@@ -192,6 +193,7 @@ def postprocess(outputs, original_size, conf_threshold=0.25):
     return final_boxes, final_scores, final_class_ids
 
 @app.post("/analyze")
+
 async def analyze_solar(
     greyImage: UploadFile = File(...),
     location: str = Form(...),
@@ -315,9 +317,10 @@ async def analyze_solar(
             "message": "Analysis complete",
             "summary": summary,
             "panel_analysis": panel_analysis,
-            "panel_image_url": f"/static/{panel_filename}",
-            "defect_image_url": f"/static/{defect_filename}"
+            "panel_image_url": f"{BASE_URL}/static/{panel_filename}",
+            "defect_image_url": f"{BASE_URL}/static/{defect_filename}"
         }
+
         
     except Exception as e:
         print(f"Error during analysis: {e}")
